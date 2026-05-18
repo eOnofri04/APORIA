@@ -4,7 +4,7 @@
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/WebSite-eonofri04.github.io/APORIA-f2ba49)](https://eonofri04.github.io/APORIA/)
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC_BY--NC--SA_4.0-lightgrey.svg)](LICENSE.txt)  
 [![Dataset-DOI](https://img.shields.io/badge/Dataset_DOI-10.5281/zenodo.20256463-blue)](https://doi.org/10.5281/zenodo.20256463)
-[![GitHub](https://img.shields.io/badge/Companion_GitHub-emarich/Socrates--300K-238636)](https://github.com/emarich/SOCRATES-300K)
+[![Companion-GitHub](https://img.shields.io/badge/Companion_GitHub-emarich/Socrates--300K-238636)](https://github.com/emarich/SOCRATES-300K)
 
 This is a companion repository for the ICML 2026 paper:
 > A Geometric Analysis of Small-sized Language Model Hallucinations  
@@ -245,7 +245,8 @@ This research is supported by the King Abdullah University of Science and Techno
 
 ## Companion code
 
-- **Generation scripts** — the code used to generate `SOCRATES-300K` dataset, tag it under llm-as-a-judge, and extract the embeddings is maintained at [github.com/emarich/Socrates-300K](https://github.com/emarich/Socrates-300K).
+- **Generation scripts** — the code used to generate `SOCRATES-300K` dataset, tag it under llm-as-a-judge, and extract the embeddings is maintained at [github.com/emarich/Socrates-300K](https://github.com/emarich/Socrates-300K).  
+  [![GitHub](https://img.shields.io/badge/GitHub-emarich/Socrates--300K-238636)](https://github.com/emarich/SOCRATES-300K)
 
 
 ## Contact / Issues
