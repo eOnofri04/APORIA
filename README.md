@@ -1,17 +1,19 @@
 # A Geometric Analysis of Small-sized Language Model Hallucinations
 
 [![Paper](https://img.shields.io/badge/Paper-arXiv:2602.14778-b31b1b)](https://arxiv.org/abs/2602.14778)
-[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/WebSite-eonofri04.github.io/APORIA-f2ba49)](https://eonofri04.github.io/APORIA/)
+[![WebSite](https://img.shields.io/badge/WebSite-eonofri04.github.io/APORIA-f2ba49)](https://eonofri04.github.io/APORIA/)
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC_BY--NC--SA_4.0-lightgrey.svg)](LICENSE.txt)  
-[![Dataset-DOI](https://img.shields.io/badge/Dataset_DOI-10.5281/zenodo.20256463-blue)](https://doi.org/10.5281/zenodo.20256463)
 [![Companion-GitHub](https://img.shields.io/badge/Companion_GitHub-emarich/Socrates--300K-238636)](https://github.com/emarich/SOCRATES-300K)
+[![Dataset-DOI](https://img.shields.io/badge/SOCRATES--300K-doi:10.5281/zenodo.20256463-blue)](https://doi.org/10.5281/zenodo.20256463)
+[![Dataset-DOI](https://img.shields.io/badge/CoQA--89K-Google_Drive-blue)](https://drive.google.com/file/d/1NXX9g98kqM3KFkta4gy81J3l8ulQWNDq/view?usp=sharing)
 
 This is a companion repository for the ICML 2026 paper:
 > A Geometric Analysis of Small-sized Language Model Hallucinations  
 > by _Emanuele Ricco, [Elia Onofri](https://www.eliaonofri.it), Lorenzo Cima, Stefano Cresci, and Roberto Di Pietro_.
 
 This repository contains the library, notebooks, and configuration files needed to reproduce every figure and table of the paper.  
-The associated dataset, **SOCRATES-300K**, is released separately on Zenodo, and the related generation code is available on GitHub (see [*Dataset*](#dataset) below).
+The associated dataset, **`SOCRATES-300K`**, is released separately on Zenodo, and the related generation code is available on GitHub (see [*Datasets*](#datasets) below).  
+The secondary dataset, **`CoQA-89K`**, is distributed via Google Drive (see [*Datasets*](#datasets) below).
 
 
 ![Pipeline](pipeline.png)
@@ -32,7 +34,7 @@ The acronym mirrors the method's pillars: it operates on *aggregate* distributio
 4. [Library](#library)
 5. [Configuration](#configuration)
 6. [Notebooks](#notebooks)
-7. [Dataset](#dataset)
+7. [Datasets](#datasets)
 8. [Reproducing the paper](#reproducing-the-paper)
 9. [License](#license)
 10. [Citation](#citation)
@@ -99,7 +101,7 @@ Verify the install:
 python -c "import aporia; print(aporia.__version__)"
 ```
 
-The dataset itself is **not** included in this repository; see *Dataset* below.
+The dataset itself is **not** included in this repository; see [*Datasets*](#datasets) below.
 
 > **Note on figure rendering.** The notebooks set `plt.rcParams['text.usetex'] = True` to produce paper-quality labels.  
 > Matplotlib needs a system LaTeX installation for this — typically `texlive-latex-extra` and `dvipng` on Debian/Ubuntu, or `MacTeX`/`TexShop` on macOS. The macros themselves are emitted into the preamble by `aporia.matplotlib_latex_preamble(cfg)`.  
@@ -180,21 +182,21 @@ All intermediate results are cached under `cache/socrates/`, so re-runs are inex
 That file holds the bespoke plotting and projection code for Figure 1 (~800 LoC) which is not reused by any other notebook; keeping it adjacent to the notebook rather than promoting it to `aporia` keeps the library focused on results that generalise across the paper.
 
 
-## Dataset
+## Datasets
 
-`SOCRATES-300K` (300,000 responses; 10 LLMs × 200 prompts × 150 generations) is released on Zenodo.  
+`SOCRATES-300K` (300,000 responses; 10 LLMs × 200 prompts × 150 generations) is released on Zenodo:  
 [![DOI](https://img.shields.io/badge/DOI-10.5281/zenodo.20256463-blue)](https://doi.org/10.5281/zenodo.20256463)
 
-Once downloaded, place the parquet within the `datasets/` directory:
+The CoQA bridge dataset is distributed at:  
+[![Dataset-DOI](https://img.shields.io/badge/CoQA--89K-Google_Drive-blue)](https://drive.google.com/file/d/1NXX9g98kqM3KFkta4gy81J3l8ulQWNDq/view?usp=sharing)
 
+Once downloaded, place the parquets within the `datasets/` directory:
 ```sh
 datasets/SOCRATES-300K.parquet
+datasets/CoQA-89K.parquet
 ```
 
 The `datasets/` folder is gitignored so the parquet does not enter the repository.
-
-The CoQA bridge dataset can be regenerated from the CoQA development split using the scripts referenced in Appendix D. *TODO: include the generation script or link to it.*
-
 
 ## Reproducing the paper
 
@@ -251,7 +253,7 @@ This research is supported by the King Abdullah University of Science and Techno
 
 ## Contact / Issues
 
-For bug reports, questions about the dataset, or collaboration enquiries, please contact:
+For bug reports, questions about the datasets, or collaboration enquiries, please contact:
 
 **[Elia Onofri](https://www.eliaonofri.it)** — `elia[dot]onofri[at]kaust[dot]edu[dot]sa`  
 Cybersecurity Research and Innovation Laboratory (CRI-Lab)  
