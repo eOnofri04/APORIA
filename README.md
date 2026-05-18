@@ -4,8 +4,8 @@
 [![WebSite](https://img.shields.io/badge/WebSite-eonofri04.github.io/APORIA-f2ba49)](https://eonofri04.github.io/APORIA/)
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC_BY--NC--SA_4.0-lightgrey.svg)](LICENSE.txt)  
 [![Companion-GitHub](https://img.shields.io/badge/Companion_GitHub-emarich/Socrates--300K-238636)](https://github.com/emarich/SOCRATES-300K)
-[![Dataset-DOI](https://img.shields.io/badge/SOCRATES--300K-doi:10.5281/zenodo.20256463-blue)](https://doi.org/10.5281/zenodo.20256463)
-[![Dataset-DOI](https://img.shields.io/badge/CoQA--89K-Google_Drive-blue)](https://drive.google.com/file/d/1NXX9g98kqM3KFkta4gy81J3l8ulQWNDq/view?usp=sharing)
+[![SOCRATES-300K-DOI](https://img.shields.io/badge/SOCRATES--300K-doi:10.5281/zenodo.20256463-blue)](https://doi.org/10.5281/zenodo.20256463)
+[![CoQA-89K-link](https://img.shields.io/badge/CoQA--89K-Google_Drive-blue)](https://drive.google.com/file/d/1NXX9g98kqM3KFkta4gy81J3l8ulQWNDq/view?usp=sharing)
 
 This is a companion repository for the ICML 2026 paper:
 > A Geometric Analysis of Small-sized Language Model Hallucinations  
@@ -185,10 +185,10 @@ That file holds the bespoke plotting and projection code for Figure 1 (~800 LoC)
 ## Datasets
 
 `SOCRATES-300K` (300,000 responses; 10 LLMs × 200 prompts × 150 generations) is released on Zenodo:  
-[![DOI](https://img.shields.io/badge/DOI-10.5281/zenodo.20256463-blue)](https://doi.org/10.5281/zenodo.20256463)
+[![SOCRATES-300K-DOI](https://img.shields.io/badge/DOI-10.5281/zenodo.20256463-blue)](https://doi.org/10.5281/zenodo.20256463)
 
 The CoQA bridge dataset is distributed at:  
-[![Dataset-DOI](https://img.shields.io/badge/CoQA--89K-Google_Drive-blue)](https://drive.google.com/file/d/1NXX9g98kqM3KFkta4gy81J3l8ulQWNDq/view?usp=sharing)
+[![CoQA-89K-link](https://img.shields.io/badge/CoQA--89K-Google_Drive-blue)](https://drive.google.com/file/d/1NXX9g98kqM3KFkta4gy81J3l8ulQWNDq/view?usp=sharing)
 
 Once downloaded, place the parquets within the `datasets/` directory:
 ```sh
@@ -247,7 +247,7 @@ This research is supported by the King Abdullah University of Science and Techno
 
 ## Companion code
 
-- **Generation scripts** — the code used to generate `SOCRATES-300K` dataset, tag it under llm-as-a-judge, and extract the embeddings is maintained at [github.com/emarich/Socrates-300K](https://github.com/emarich/Socrates-300K).  
+- **Generation scripts** — the code used to generate `SOCRATES-300K` dataset, tag it under llm-as-a-judge, and extract the embeddings is maintained at:  
   [![GitHub](https://img.shields.io/badge/GitHub-emarich/Socrates--300K-238636)](https://github.com/emarich/SOCRATES-300K)
 
 
