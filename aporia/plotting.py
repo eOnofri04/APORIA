@@ -12,6 +12,7 @@ from __future__ import annotations
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+import matplotlib as mpl
 
 
 def plot_metric_boxplots_two_panels(
@@ -109,3 +110,80 @@ def plot_metric_boxplots_two_panels(
 
     fig.tight_layout()
     return fig, axes
+
+
+# ── Palette ───────────────────────────────────────────────────────────────────
+class MK:
+    BG      = "#272822"   # mkBg      figure / canvas background
+    PANEL   = "#3E3D32"   # mkLight   axes background
+    DARK    = "#1E1F1C"   # mkDark    deep background
+    TEXT    = "#F8F8F2"   # mkText    near-white body text
+    GREEN   = "#A6E22E"   # mkGreen   C0  (was #77AC30)
+    PINK    = "#F92672"   # mkPink    C1  (was #D95319)
+    CYAN    = "#66D9E8"   # mkCyan
+    YELLOW  = "#E6DB74"   # mkYellow
+    ORANGE  = "#FD971F"   # mkOrange
+    PURPLE  = "#AE81FF"   # mkPurple
+    COMMENT = "#75715E"   # mkComment muted / secondary / spines
+    # Additional for tab10
+    RED     = "#FF6188"
+    SAND    = "#C9B37E"
+    LIME    = "#B8E986"
+    GRAY    = "#CFCFC2"
+
+
+# ── Default colour cycle (used by plot(), scatter() when no colour given) ─────
+_CYCLE   = [MK.GREEN, MK.PINK, MK.CYAN, MK.YELLOW, MK.ORANGE, MK.PURPLE]
+MK_TAB_10  = [MK.GREEN, MK.PINK, MK.SAND, MK.ORANGE, MK.PURPLE, MK.RED, MK.CYAN, MK.YELLOW, MK.LIME, MK.GRAY]
+TAB_10 = plt.get_cmap("tab10")
+
+def apply_monokai():
+    """Apply the Monokai dark theme as global rcParams."""
+    mpl.rcParams.update({
+        # ── Fonts ─────────────────────────────────────────────────────────
+        "font.family":            "serif",
+        "font.serif":             ["Computer Modern"],
+        "font.size":              14,
+        "text.usetex":            True,
+        "text.latex.preamble":    r"\usepackage{amsfonts}",
+        "text.color":             MK.TEXT,
+
+        # ── Figure ────────────────────────────────────────────────────────
+        "figure.facecolor":       MK.BG,
+        "figure.edgecolor":       MK.BG,
+
+        # ── Save: transparent so figures overlay cleanly on dark slides ───
+        "savefig.facecolor":      "none",
+        "savefig.edgecolor":      "none",
+        "savefig.transparent":    True,
+
+        # ── Axes ──────────────────────────────────────────────────────────
+        "axes.facecolor":         MK.PANEL,
+        "axes.edgecolor":         MK.COMMENT,
+        "axes.labelcolor":        MK.TEXT,
+        "axes.titlecolor":        MK.TEXT,
+        "axes.spines.top":        False,
+        "axes.spines.right":      False,
+        "axes.prop_cycle":        mpl.cycler(color=_CYCLE),
+
+        # ── Ticks ─────────────────────────────────────────────────────────
+        "xtick.color":            MK.TEXT,
+        "ytick.color":            MK.TEXT,
+        "xtick.labelcolor":       MK.TEXT,
+        "ytick.labelcolor":       MK.TEXT,
+
+        # ── Grid ──────────────────────────────────────────────────────────
+        "grid.color":             MK.COMMENT,
+        "grid.alpha":             0.4,
+        "grid.linestyle":         "--",
+
+        # ── Legend ────────────────────────────────────────────────────────
+        "legend.facecolor":       MK.PANEL,
+        "legend.edgecolor":       MK.COMMENT,
+        "legend.labelcolor":      MK.TEXT,
+
+        # ── Scatter / patches ─────────────────────────────────────────────
+        "patch.edgecolor":        MK.COMMENT,
+    })
+
+    TAB_10.colors = MK_TAB_10
