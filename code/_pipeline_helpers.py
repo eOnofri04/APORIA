@@ -28,16 +28,7 @@ from sklearn.model_selection import StratifiedShuffleSplit
 
 import aporia as ap
 
-EDGE_COLORS = {
-    "GG": "#6E9B34",  # green
-    "HH": "#AA4D39",  # red
-    "GH": "#27586B",  # blue
-}
-
-COLORS = {
-    0: "#6E9B34",  # G → green
-    1: "#AA4D39",  # H → orange (distinct from HH red)
-}
+from aporia.plotting import EDGE_COLORS, VERTEX_COLORS
 
 def train_test_split_80_20(X, y, random_state=42):
     sss = StratifiedShuffleSplit(
@@ -81,11 +72,7 @@ def plot_distance_violin(
     in the selected space ('embedding' or 'fisher')
     """
     if colors is None:
-        colors = {
-            "GG": "#6E9B34",
-            "HH": "#AA4D39",
-            "GH": "#27586B",
-        }
+        colors = EDGE_COLORS
 
     d = get_distance_block(geometry_store, key, space)
 
@@ -250,10 +237,7 @@ def plot_tsne_complete_graph(
         fig = ax.figure
 
     if colors is None:
-        colors = {
-            0: "#6E9B34",
-            1: "#AA4D39",
-        }
+        colors = VERTEX_COLORS
 
     pos = nx.get_node_attributes(G, "pos")
     cls = nx.get_node_attributes(G, "cls")
@@ -277,7 +261,7 @@ def plot_tsne_complete_graph(
         )
 
     # ---- nodes ----
-    for c in [0, 1]:
+    for c in ["G", "H"]:
         nodes = [n for n in G.nodes if cls[n] == c]
         nx.draw_networkx_nodes(
             G,
@@ -285,7 +269,7 @@ def plot_tsne_complete_graph(
             nodelist=nodes,
             node_color=colors[c],
             node_size=node_size,
-            node_shape='s' if c == 0 else 'o',
+            node_shape='s' if c == "G" else 'o',
             alpha=0.8,
             ax=ax,
         )
@@ -319,16 +303,17 @@ def build_tsne_star_graph(
 
     # ---- training nodes + star edges ----
     for i, (pos, cls) in enumerate(zip(Z_train, y_train)):
+        cls = "G" if cls == 0 else "H"
         G.add_node(
             i,
             pos=tuple(pos),
-            cls=int(cls),
+            cls=cls,
         )
 
         G.add_edge(
             test_id,
             i,
-            etype=int(cls),   # 0=G, 1=H
+            etype=cls,   # 0=G, 1=H
         )
 
     return G
@@ -352,7 +337,7 @@ def plot_tsne_star_graph(
     cls = nx.get_node_attributes(G, "cls")
 
     # ---- edges (test → train) ----
-    for cls_id, color in COLORS.items():
+    for cls_id, color in VERTEX_COLORS.items():
         edges = [
             (u, v)
             for u, v, d in G.edges(data=True)
@@ -370,15 +355,15 @@ def plot_tsne_star_graph(
         )
 
     # ---- training nodes ----
-    for c in [0, 1]:
+    for c in ["G", "H"]:
         nodes = [n for n in G.nodes if cls.get(n) == c]
         nx.draw_networkx_nodes(
             G,
             pos,
             nodelist=nodes,
-            node_color=COLORS[c],
+            node_color=VERTEX_COLORS[c],
             node_size=node_size,
-            node_shape='s' if c == 0 else 'o',
+            node_shape='s' if c == "G" else 'o',
             alpha=0.8,
             ax=ax,
         )
@@ -439,15 +424,15 @@ def plot_fisher_with_optional_test(
         fig = ax.figure
 
     # ---- training points (jittered) ----
-    for cls in [0, 1]:
-        mask = (y_train == cls)
+    for cls_id, cls in enumerate(["G", "H"]):
+        mask = (y_train == cls_id)
         ax.scatter(
             Z_train_j[mask, 0],
             Z_train_j[mask, 1],
             s=train_size,
             alpha=0.6,
-            c=COLORS[cls],
-            marker='s' if cls == 0 else 'o',
+            c=VERTEX_COLORS[cls],
+            marker='s' if cls == "G" else 'o',
             zorder=2,
         )
 
@@ -732,10 +717,7 @@ def plot_test_distance_violin(
     rotate=False
 ):
     if colors is None:
-        colors = {
-            "G": "#6E9B34",
-            "H": "#AA4D39",
-        }
+        colors = VERTEX_COLORS
 
     d = get_test_distance_block(dist_df, test_id, space=space)
 

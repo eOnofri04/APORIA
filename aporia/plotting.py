@@ -113,6 +113,18 @@ def plot_metric_boxplots_two_panels(
 
 
 # ── Palette ───────────────────────────────────────────────────────────────────
+
+EDGE_COLORS = {
+    "GG": "#6E9B34",  # green
+    "HH": "#AA4D39",  # red
+    "GH": "#27586B",  # blue
+}
+
+VERTEX_COLORS = {
+    "G": "#6E9B34",
+    "H": "#AA4D39",
+}
+
 class MK:
     BG      = "#272822"   # mkBg      figure / canvas background
     PANEL   = "#3E3D32"   # mkLight   axes background
@@ -187,3 +199,10 @@ def apply_monokai():
     })
 
     TAB_10.colors = MK_TAB_10
+
+    EDGE_COLORS["GG"] = MK.GREEN
+    EDGE_COLORS["HH"] = MK.PINK
+    EDGE_COLORS["GH"] = MK.CYAN
+
+    VERTEX_COLORS["G"] = MK.GREEN
+    VERTEX_COLORS["H"] = MK.PINK
