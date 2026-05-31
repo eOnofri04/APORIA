@@ -125,6 +125,8 @@ VERTEX_COLORS = {
     "H": "#AA4D39",
 }
 
+BORDER_COLOR = 'black'
+
 class MK:
     BG      = "#272822"   # mkBg      figure / canvas background
     PANEL   = "#3E3D32"   # mkLight   axes background
@@ -206,3 +208,6 @@ def apply_monokai():
 
     VERTEX_COLORS["G"] = MK.GREEN
     VERTEX_COLORS["H"] = MK.PINK
+
+    global BORDER_COLOR
+    BORDER_COLOR = MK.COMMENT

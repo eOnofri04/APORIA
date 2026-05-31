@@ -28,7 +28,7 @@ from sklearn.model_selection import StratifiedShuffleSplit
 
 import aporia as ap
 
-from aporia.plotting import EDGE_COLORS, VERTEX_COLORS
+from aporia.plotting import EDGE_COLORS, VERTEX_COLORS, BORDER_COLOR
 
 def train_test_split_80_20(X, y, random_state=42):
     sss = StratifiedShuffleSplit(
@@ -91,7 +91,7 @@ def plot_distance_violin(
     )
     for pc in vp["bodies"]:
         pc.set_facecolor(colors["GG"])
-        pc.set_edgecolor("black")
+        pc.set_edgecolor(BORDER_COLOR)
         pc.set_linewidth(1.0)
         pc.set_alpha(0.5)
 
@@ -108,7 +108,7 @@ def plot_distance_violin(
     )
     for pc in vp["bodies"]:
         pc.set_facecolor(colors["HH"])
-        pc.set_edgecolor("black")
+        pc.set_edgecolor(BORDER_COLOR)
         pc.set_linewidth(1.0)
         pc.set_alpha(0.5)
 
@@ -123,12 +123,12 @@ def plot_distance_violin(
     )
     for box in bp["boxes"]:
         box.set_facecolor(colors["GH"])
-        box.set_edgecolor("black")
+        box.set_edgecolor(BORDER_COLOR)
         box.set_alpha(0.9)
 
     for elem in ["whiskers", "caps", "medians"]:
         for artist in bp[elem]:
-            artist.set_color("black")
+            artist.set_color(BORDER_COLOR)
 
     xmin, xmax = ax.get_xlim()
     y0 = 0
@@ -473,7 +473,7 @@ def draw_fisher_axis(ax, z, angle_deg=-30, lw=1.5):
         line[:, 0],
         line[:, 1],
         "--",
-        color="black",
+        color="grey",
         lw=lw,
         alpha=0.6,
         zorder=0,
@@ -736,7 +736,8 @@ def plot_test_distance_violin(
     )
     for pc in vp["bodies"]:
         pc.set_facecolor(colors["G"])
-        pc.set_edgecolor("black")
+        print(BORDER_COLOR)
+        pc.set_edgecolor(BORDER_COLOR)
         pc.set_linewidth(1.0)
         pc.set_alpha(0.5)
 
@@ -753,7 +754,7 @@ def plot_test_distance_violin(
     )
     for pc in vp["bodies"]:
         pc.set_facecolor(colors["H"])
-        pc.set_edgecolor("black")
+        pc.set_edgecolor(BORDER_COLOR)
         pc.set_linewidth(1.0)
         pc.set_alpha(0.5)
 
