@@ -200,7 +200,7 @@ def build_tsne_complete_graph(Z, y):
         G.add_node(
             i,
             pos=tuple(pos),
-            cls=int(cls),
+            cls="G" if cls == 0 else "H",
         )
 
     # ---- complete edges ----
@@ -243,22 +243,23 @@ def plot_tsne_complete_graph(
     cls = nx.get_node_attributes(G, "cls")
 
     # ---- edges by type ----
-    for etype, color in EDGE_COLORS.items():
-        edges = [
-            (u, v)
-            for u, v, d in G.edges(data=True)
-            if d["etype"] == etype
-        ]
+    if edge_lw is not None:
+        for etype, color in EDGE_COLORS.items():
+            edges = [
+                (u, v)
+                for u, v, d in G.edges(data=True)
+                if d["etype"] == etype
+            ]
 
-        nx.draw_networkx_edges(
-            G,
-            pos,
-            edgelist=edges,
-            edge_color=color,
-            alpha=edge_alphas[etype],
-            width=edge_lw,
-            ax=ax,
-        )
+            nx.draw_networkx_edges(
+                G,
+                pos,
+                edgelist=edges,
+                edge_color=color,
+                alpha=edge_alphas[etype],
+                width=edge_lw,
+                ax=ax,
+            )
 
     # ---- nodes ----
     for c in ["G", "H"]:
@@ -337,22 +338,23 @@ def plot_tsne_star_graph(
     cls = nx.get_node_attributes(G, "cls")
 
     # ---- edges (test → train) ----
-    for cls_id, color in VERTEX_COLORS.items():
-        edges = [
-            (u, v)
-            for u, v, d in G.edges(data=True)
-            if d["etype"] == cls_id
-        ]
+    if edge_lw is not None:
+        for cls_id, color in VERTEX_COLORS.items():
+            edges = [
+                (u, v)
+                for u, v, d in G.edges(data=True)
+                if d["etype"] == cls_id
+            ]
 
-        nx.draw_networkx_edges(
-            G,
-            pos,
-            edgelist=edges,
-            edge_color=color,
-            alpha=edge_alpha,
-            width=edge_lw,
-            ax=ax,
-        )
+            nx.draw_networkx_edges(
+                G,
+                pos,
+                edgelist=edges,
+                edge_color=color,
+                alpha=edge_alpha,
+                width=edge_lw,
+                ax=ax,
+            )
 
     # ---- training nodes ----
     for c in ["G", "H"]:
@@ -369,17 +371,18 @@ def plot_tsne_star_graph(
         )
 
     # ---- test node (black star) ----
-    nx.draw_networkx_nodes(
-        G,
-        pos,
-        nodelist=["test"],
-        node_color="black",
-        node_size=test_size,
-        node_shape="*",
-        linewidths=1.2,
-        edgecolors="white",
-        ax=ax,
-    )
+    if test_size is not None:
+        nx.draw_networkx_nodes(
+            G,
+            pos,
+            nodelist=["test"],
+            node_color="black",
+            node_size=test_size,
+            node_shape="*",
+            linewidths=1.2,
+            edgecolors="white",
+            ax=ax,
+        )
     
     if title is not None:
         ax.set_title(title)
